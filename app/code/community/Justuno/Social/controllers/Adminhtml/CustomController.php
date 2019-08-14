@@ -1,13 +1,8 @@
 <?php
- 
 class Justuno_Social_Adminhtml_CustomController extends Mage_Adminhtml_Controller_Action
 {
     public function indexAction()
     {
-        /*$this->loadLayout()
-            ->_setActiveMenu('mycustomtab')
-            ->_title($this->__('Index Action'));
-        */             
         Mage::getConfig()->saveConfig('justuno/account/embed', '', 'default', 1);
         Mage::getConfig()->saveConfig('justuno/account/email', '', 'default', 0);
         Mage::getConfig()->saveConfig('justuno/account/password', '', 'default', 0);
@@ -21,7 +16,6 @@ class Justuno_Social_Adminhtml_CustomController extends Mage_Adminhtml_Controlle
 
         $url = Mage::helper("adminhtml")->getUrl("adminhtml/system_config/edit/section/justuno");
         $this->_redirect('adminhtml/system_config/edit/section/justuno');
-        //$this->renderLayout();
     }
  
     public function listAction()
@@ -29,8 +23,6 @@ class Justuno_Social_Adminhtml_CustomController extends Mage_Adminhtml_Controlle
         $this->loadLayout()
             ->_setActiveMenu('mycustomtab')
             ->_title($this->__('List Action'));
- 
-        // my stuff
  
         $this->renderLayout();
     }

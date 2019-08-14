@@ -132,26 +132,6 @@
 	                          </embed>
 						   </fields>
 					   </register>
-					   
-				      <!--<dashboard translate="label"> 
-					  <label>Set Up or Manage Account</label>
-					  <frontend_type>text</frontend_type>
-					  <sort_order>2</sort_order>
-					  <show_in_default>1</show_in_default>
-					  <show_in_website>1</show_in_website>
-					  <show_in_store>1</show_in_store>
-				       <fields>
-                          <dashboard translate="label">
-							<frontend_type>hidden</frontend_type>
-							<frontend_model>social/dashboard</frontend_model>
-                            <sort_order>0</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-							<comment></comment>
-                          </dashboard>
-					   </fields>
-					   </dashboard>-->
 				</groups>
 
 

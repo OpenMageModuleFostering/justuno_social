@@ -8,28 +8,8 @@ class Justuno_Social_Model_Embed extends Mage_Core_Model_Config_Data
 			foreach ($this->groups['register']['fields'] as $name=>$field) {
 				$fdata[$name] = $field['value'];
 			}
-			/*if($fdata){
-				if(!$fdata['email']) {
-					Mage::throwException("Please enter valid email address");
-				}
-				if(!$fdata['password']) {
-					Mage::throwException("Please enter valid pasword");
-				}
-				if(!$fdata['phone']) {
-					Mage::throwException("Please enter phone no");
-				}
-				if(!$fdata['domain']) {
-					Mage::throwException("Please enter domain name");
-				}
 
-			}*/
-		//print_r($fdata);exit;
 			if($fdata['email'] && $fdata['password']){
-				/*if ($fdata['embed']) {
-					$obj = json_decode($fdata['embed']);
-					$fdata['embed'] = $obj->embed;
-					$fdata['guid'] = $obj->guid;
-				}*/
 				$fdata['guid'] = "";
 				include_once dirname(__FILE__) . '/JustunoAccess.php';
 				$params = array('apiKey'=>JUSTUNO_KEY,
@@ -61,15 +41,7 @@ class Justuno_Social_Model_Embed extends Mage_Core_Model_Config_Data
 			foreach ($this->groups['account']['fields'] as $name=>$field) {
 				$flogindata[$name] = $field['value'];
 			}
-		/*if($flogindata){
-			if(!$flogindata['email']) {
-				Mage::throwException("Please enter valid email address");
-			}
-			if(!$flogindata['password']) {
-				Mage::throwException("Please enter valid pasword");
-			}
-
-		}*/
+		
 		if($flogindata['email'] && $flogindata['password']){
 			if ($flogindata['embed']) {
 				$obj = json_decode($flogindata['embed']);
@@ -78,7 +50,7 @@ class Justuno_Social_Model_Embed extends Mage_Core_Model_Config_Data
 			}
 			include_once dirname(__FILE__) . '/JustunoAccess.php';
 			$login_params = array('apiKey'=>JUSTUNO_KEY,'email'=>$flogindata['email'],'domain'=>'','guid'=>$flogindata['guid']);
-			print_r($login_params);
+			
 			if($flogindata['password'])
 				$login_params['password'] = $flogindata['password'];
 			$jAccess = new JustunoAccess($login_params);
@@ -100,7 +72,6 @@ class Justuno_Social_Model_Embed extends Mage_Core_Model_Config_Data
 				$config->setScopeId($store->getId());
 				$config->save();
 
-				//Mage::getConfig()->saveConfig('justuno/account/embed', $flogin_embed_db, 'default', 0);
 				Mage::getConfig()->saveConfig('justuno/account/email', $flogindata['email'], 'default', 0);
 				Mage::getConfig()->saveConfig('justuno/account/password', $flogindata['password'], 'default', 0);
 				Mage::getConfig()->saveConfig('justuno/account/domain', $flogindata['domain'], 'default', 0);
