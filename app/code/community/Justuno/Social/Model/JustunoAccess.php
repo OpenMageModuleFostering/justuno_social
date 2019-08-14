@@ -131,7 +131,9 @@ class JustunoAccess {
 		}
 		catch(Exception $e){
 			curl_close($tuCurl);
-			throw new JustunoAccessException('Request error: '.$e->getMessage());
+			$msg = $e->getMessage();
+      if($msg == "") $msg = 'Please check the credentials.';
+      throw new JustunoAccessException('Request error: '.$msg);
 		}
   }
 }
