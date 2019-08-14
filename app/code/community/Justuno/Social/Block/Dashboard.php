@@ -5,8 +5,7 @@ class Justuno_Social_Block_Dashboard extends Mage_Adminhtml_Block_System_Config_
     {
 
     	$email = Mage::getStoreConfig('justuno/account/email',0);
-		$domain = Mage::getStoreConfig('justuno/account/domain',0);
-		$jusdata = Mage::getStoreConfig('justuno/account/embed',1);
+		$jusdata = Mage::getStoreConfig('justuno/account/embed',0);
 		if ($jusdata) {
 			$jusdata = json_decode($jusdata);
 		}

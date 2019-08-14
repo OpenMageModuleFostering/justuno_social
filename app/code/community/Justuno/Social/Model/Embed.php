@@ -1,7 +1,7 @@
 <?php
 class Justuno_Social_Model_Embed extends Mage_Core_Model_Config_Data
 {
-    public function save()
+    public function _afterSave()
     {
     		
 			$fdata = array();
@@ -27,11 +27,20 @@ class Justuno_Social_Model_Embed extends Mage_Core_Model_Config_Data
 					$jusdata['guid'] = (string)$justuno['guid'];
 					$jusdata['embed'] = (string)$justuno['embed'];
 					$embed_db = (string)json_encode($jusdata);
-					Mage::getConfig()->saveConfig('justuno/account/embed', $embed_db, 'default', 1);
-					Mage::getConfig()->saveConfig('justuno/account/email', $fdata['email'], 'default', 0);
-					Mage::getConfig()->saveConfig('justuno/account/password', $fdata['password'], 'default', 0);
-					Mage::getConfig()->saveConfig('justuno/account/domain', $fdata['domain'], 'default', 0);
-
+					$store = Mage::app()->getStore();
+					$config = Mage::getModel('core/config_data');
+					$config->setValue($embed_db);
+					$config->setPath('justuno/account/embed');
+					$config->setScope('default');
+					$config->setScopeId($store->getId());
+					$config->save();
+					$config2 = Mage::getModel('core/config_data');
+					$config2->setValue($fdata['email']);
+					$config2->setPath('justuno/account/email');
+					$config2->setScope('default');
+					$config2->setScopeId($store->getId());
+					$config2->save();
+					
 				}
 				catch(JustunoAccessException $e) {
 					Mage::throwException($e->getMessage());
@@ -49,15 +58,17 @@ class Justuno_Social_Model_Embed extends Mage_Core_Model_Config_Data
 				$flogindata['guid'] = $obj->guid;
 			}
 			include_once dirname(__FILE__) . '/JustunoAccess.php';
-			$login_params = array('apiKey'=>JUSTUNO_KEY,'email'=>$flogindata['email'],'domain'=>'','guid'=>$flogindata['guid']);
+
+			$domain = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);
+			$login_params = array('apiKey'=>JUSTUNO_KEY,'email'=>$flogindata['email'],'domain'=>$domain,'guid'=>$flogindata['guid']);
 			
 			if($flogindata['password'])
 				$login_params['password'] = $flogindata['password'];
 			$jAccess = new JustunoAccess($login_params);
 			try {
-				//$justuno = $jAccess->getWidgetConfig();
 				$jusdata = array();
 				$jusdata['dashboard'] = (string)$jAccess->getDashboardLink();
+				$justuno = $jAccess->getWidgetConfig();
 				$jusdata['guid'] = (string)$justuno['guid'];
 				$jusdata['embed'] = (string)$justuno['embed'];
 				$flogin_embed_db = (string)json_encode($jusdata);
@@ -65,13 +76,13 @@ class Justuno_Social_Model_Embed extends Mage_Core_Model_Config_Data
 				$storeCode = 'default';
 				$store = Mage::getModel('core/store')->load($storeCode);
 				$path = 'justuno/account/embed';
-				$config = Mage::getModel('core/config_data');
+				/*$config = Mage::getModel('core/config_data');
 				$config->setValue($flogin_embed_db);
 				$config->setPath($path);
 				$config->setScope('default');
 				$config->setScopeId($store->getId());
-				$config->save();
-
+				$config->save(); */
+				Mage::getConfig()->saveConfig('justuno/account/embed', $flogin_embed_db, 'default', 0);
 				Mage::getConfig()->saveConfig('justuno/account/email', $flogindata['email'], 'default', 0);
 				Mage::getConfig()->saveConfig('justuno/account/password', $flogindata['password'], 'default', 0);
 				Mage::getConfig()->saveConfig('justuno/account/domain', $flogindata['domain'], 'default', 0);
@@ -80,6 +91,6 @@ class Justuno_Social_Model_Embed extends Mage_Core_Model_Config_Data
 				Mage::throwException($e->getMessage());
 			}
 		}
-		return parent::save();
+		//return parent::save();
 	}
 }
