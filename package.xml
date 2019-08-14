@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
     <name>Justuno_Social</name>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <stability>stable</stability>
     <license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL v3.0</license>
     <channel>community</channel>
@@ -17,7 +17,7 @@
 &#xD;
 &#xD;
 To understand how Justuno works it&#x2019;s best to just see him in action ;)  Please visit </description>
-    <notes>First stable release</notes>
+    <notes>Stable release. Add auto logging in user via API</notes>
     <authors><author><name>Justuno</name><user>Justuno</user><email>erik@justuno.com</email></author></authors>
     <date>2013-10-16</date>
     <time>13:49:14</time>

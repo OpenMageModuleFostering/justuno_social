@@ -3,7 +3,7 @@ define('JUSTUNO_KEY', '467cd758-5745-4385-906b-6c76271c343a');
 /**
  * @file
  * Class to perform operations with Justuno server.
- * 
+ *
  * @version 13-08-2013
  */
 
@@ -88,18 +88,51 @@ class JustunoAccess {
   }
 
   /**
-   * Get link to Jutsuno dashbord.
+   * Get link to Jutsuno dashbord link using API
    */
   public function getDashboardLink() {
     $params = array(
-      'key' => $this->apiKey,
-      'email' => $this->email,
-      'domain' => $this->domain,
-      'action' => 'edit',
-      'guid' => $this->guid,
-    );
-    $query  = http_build_query($params);
-    return "{$this->apiEndpointUrl}?$query";
+			'key'=>$this->apiKey,
+			'email'=>$this->email,
+			'domain'=>$this->domain,
+			'action'=>'login',
+			'guid'=>$this->guid
+		);
+
+		if(isset($this->password)){
+			$params['password'] = $this->password;
+		}
+		$query = http_build_query($params);
+		$tuCurl = curl_init();
+		curl_setopt($tuCurl, CURLOPT_URL, "{$this->apiEndpointUrl}?$query");
+		curl_setopt($tuCurl,CURLOPT_SSL_VERIFYPEER,false);
+		curl_setopt($tuCurl, CURLOPT_RETURNTRANSFER, 1);
+		$tuData = curl_exec($tuCurl);
+		try{
+			if(curl_errno($tuCurl)){
+				throw new Exception(curl_error($tuCurl));
+			}
+			$dom = new DOMDocument;
+			$dom->loadXML($tuData);
+			$nodes = $dom->getElementsByTagName('result');
+			if(!$nodes || $nodes->length == 0)
+				throw new Exception('Incorrect response from remote server');
+
+			if($nodes->item(0)->nodeValue == 0){
+				$nodes = $dom->getElementsByTagName('error');
+				throw new Exception($nodes->item(0)->nodeValue);
+			}
+			$nodes = $dom->getElementsByTagName('secure_login_url');
+			if($nodes && $nodes->length !== 0){
+				$secureLoginUrl = $nodes->item(0)->nodeValue;
+			}
+			curl_close($tuCurl);
+			return $secureLoginUrl;
+		}
+		catch(Exception $e){
+			curl_close($tuCurl);
+			throw new JustunoAccessException('Request error: '.$e->getMessage());
+		}
   }
 }
 
