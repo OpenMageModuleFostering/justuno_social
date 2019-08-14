@@ -1,5 +1,5 @@
 <?php
-class Justuno_Social_Block_Dashboard extends Mage_Adminhtml_Block_System_Config_Form_Fieldset
+class Justuno_Social_Block_Dashboard1 extends Mage_Adminhtml_Block_System_Config_Form_Fieldset
 {
     /*protected function _getElementHtml(Varien_Data_Form_Element_Abstract $element)
     {
@@ -39,10 +39,12 @@ class Justuno_Social_Block_Dashboard extends Mage_Adminhtml_Block_System_Config_
 		else{
 	        foreach ($element->getSortedElements() as $field) {
 	            $html.= $field->toHtml();
+
 	        }
+	        $html .= $this->_getFooterHtml($element);
+        	return $html;
         }
 
-        $html .= $this->_getFooterHtml($element);
-        return $html;
+        
     }
 }

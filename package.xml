@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
     <name>Justuno_Social</name>
-    <version>1.0.1</version>
+    <version>1.0.3</version>
     <stability>stable</stability>
     <license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL v3.0</license>
     <channel>community</channel>
@@ -18,10 +18,68 @@
 &#xD;
 To understand how Justuno works it&#x2019;s best to just see him in action ;)  Please visit </description>
     <notes>Stable release. Add auto logging in user via API</notes>
-    <authors><author><name>Justuno</name><user>Justuno</user><email>erik@justuno.com</email></author></authors>
+    <authors><author><name>Justuno</name><user>MAG000180786</user><email>erik@justuno.com</email></author></authors>
     <date>2013-10-16</date>
     <time>13:49:14</time>
-    <contents><target name="magecommunity"><dir name="Justuno"><dir name="Social"><dir name="Block"><file name="Dashboard.php" hash="65c748c957380488645c75cbb292267a"/><file name="Domain.php" hash="d9375f0f7b4e9198793959a86e96d4de"/><file name="Widget.php" hash="5d61c43647ed55827acfd0bd3baed473"/></dir><dir name="Model"><file name="Embed.php" hash="c5a033a067c424ef17bcab29c192424c"/><file name="JustunoAccess.php" hash="092c586e980c5840c3db6775e260e93b"/></dir><dir name="etc"><file name="adminhtml.xml" hash="798e1cb0f2843594e7b45d3601dfc6c4"/><file name="config.xml" hash="e82b6ecab3d744cb15a64e7170fb662c"/><file name="system.xml" hash="137c952fe96f7093a73e8144716107d5"/></dir></dir></dir></target><target name="magedesign"><dir><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><file name="justuno_social.xml" hash="d098f0a90ce0f311d0f233d416646183"/></dir><dir name="template"><dir name="justuno_social"><file name="widget.phtml" hash="7c6cbd4fe1df046562bc7bcc654f84d1"/></dir></dir></dir></dir></dir></dir></target><target name="mageetc"><dir><dir name="modules"><file name="Justuno_Social.xml" hash="936992f02fadf29a8de2af307d4c2dd0"/></dir></dir></target></contents>
+    <contents>
+        <target name="magecommunity">
+            <dir name="Justuno">
+                <dir name="Social">
+                    <dir name="Block">
+                        <file name="Dashboard.php" hash="65c748c957380488645c75cbb292267a"/>
+                        <file name="Dashboard1.php" hash=""/>
+                        <file name="Domain.php" hash="d9375f0f7b4e9198793959a86e96d4de"/>
+                        <file name="Widget.php" hash="5d61c43647ed55827acfd0bd3baed473"/>
+                    </dir>
+                    <dir name="Model">
+                        <dir name="Adminhtml">
+                            <file name="Comment.php" hash=""/>
+                        </dir>
+                        <file name="Embed.php" hash="c5a033a067c424ef17bcab29c192424c"/>
+                        <file name="JustunoAccess.php" hash="092c586e980c5840c3db6775e260e93b"/>
+                    </dir>
+                    <dir name="Helper">
+                        <file name="Data.php" hash=""/>
+                    </dir>
+                    <dir name="controllers">
+                        <dir name="Adminhtml">
+                            <file name="CustomController.php" hash=""/>
+                        </dir>
+                    </dir>
+                    <dir name="etc">
+                        <file name="adminhtml.xml" hash="798e1cb0f2843594e7b45d3601dfc6c4"/>
+                        <file name="config.xml" hash="e82b6ecab3d744cb15a64e7170fb662c"/>
+                        <file name="system.xml" hash="137c952fe96f7093a73e8144716107d5"/>
+                    </dir>
+                </dir>
+            </dir>
+        </target>
+        <target name="magedesign">
+            <dir>
+                <dir name="frontend">
+                    <dir name="base">
+                        <dir name="default">
+                            <dir name="layout">
+                                <file name="justuno_social.xml" hash="d098f0a90ce0f311d0f233d416646183"/>
+                            </dir>
+                            <dir name="template">
+                                <dir name="justuno_social">
+                                    <file name="widget.phtml" hash="7c6cbd4fe1df046562bc7bcc654f84d1"/>
+                                </dir>
+                            </dir>
+                        </dir>
+                    </dir>
+                </dir>
+            </dir>
+        </target>
+        <target name="mageetc">
+            <dir>
+                <dir name="modules">
+                    <file name="Justuno_Social.xml" hash="936992f02fadf29a8de2af307d4c2dd0"/>
+                </dir>
+            </dir>
+        </target>
+    </contents>
     <compatible/>
     <dependencies><required><php><min>5.2.0</min><max>6.0.0</max></php><extension><name>curl</name><min></min><max></max></extension></required></dependencies>
 </package>

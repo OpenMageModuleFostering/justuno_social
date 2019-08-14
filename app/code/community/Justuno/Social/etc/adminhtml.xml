@@ -9,9 +9,13 @@
 								<config>
 									<children>
 										<justuno translate="title" module="social">
-											<title>Justuno Social</title>
+											<title>Justuno</title>
 											<sort_order>0</sort_order>
 										</justuno>
+										<dashboard translate="title" module="social">
+											<title>Dashboard</title>
+											<sort_order>1</sort_order>
+										</dashboard>
 									</children>
 								</config>
 							</children>

@@ -2,15 +2,9 @@
 <config>
   <modules>
     <Justuno_Social>
-      <version>1.0.0</version>
+      <version>1.0.3</version>
     </Justuno_Social>
-  </modules>
-  <tabs>
-    <social module="social" translate="label">
-        <label>Justuno Social</label>
-        <sort_order>100</sort_order>
-    </social>
-  </tabs>  
+  </modules> 
   <global>
 	<models>
 		<social>
@@ -32,7 +26,36 @@
 			<class>Justuno_Social_Block_Dashboard</class>
 		</social_dashboard>
 	</blocks>
+	<helpers>
+        <social>
+            <class>Justuno_Social_Helper</class>
+        </social>
+    </helpers>
   </global>
+  <adminhtml>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <justuno>
+                                        <title>Justuno</title>
+                                    </justuno>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</adminhtml>
   <frontend>
 	<layout>
 		<updates>
@@ -42,4 +65,15 @@
 		</updates>
 	</layout>
   </frontend> 
+  <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <foo_bar before="Mage_Adminhtml">Justuno_Social_Adminhtml</foo_bar>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
 </config>
