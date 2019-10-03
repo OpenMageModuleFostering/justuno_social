@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/Justuno_Social",
+    "name": "OpenMageModuleFostering\/Justuno_Social",
     "type": "magento-module",
     "license": "OSL-v3.0",
     "homepage": "",
     "description": "Convert website visitors into high quality fans, followers & email subscribers with Justuno social offers.",
     "authors": [
-    {
-        "name": "Justuno",
-        "email": "erik@justuno.com"
-    }
-],
+        {
+            "name": "Justuno",
+            "email": "erik@justuno.com"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
